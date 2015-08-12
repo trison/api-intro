@@ -1,8 +1,7 @@
-# TITLE: Intro to the sendwithus API
+# Intro to the sendwithus API
 
-# Sample Outline
 ## Getting Started with sendwithus
-Hi, thanks for choosing to send emails with sendwithus! 
+Thanks for choosing to send emails with sendwithus! 
 
 Sendwithus is a REST API, which uses HTTP request methods such as POST and GET
 to send and retrieve information. 
@@ -10,7 +9,7 @@ to send and retrieve information.
 Don't know what these terms mean? Don't worry! This short introduction will help guide you through understanding our API
 and sending your first email. 
 
-We will use the 'cURL' command line tool for our examples, but we also provide API Clients:
+We will use the 'cURL' command line tool for our examples, but we also provide API Clients for:
 
 * Python
 * Ruby
@@ -21,7 +20,7 @@ We will use the 'cURL' command line tool for our examples, but we also provide A
 
 # REST API
 The sendwithus API is based on the REST architectural style. This means information is transferred through HTTP requests to URLs
-that have certain resources(such as sending your emails, or getting your email templates). REST APIs are widely used in web services and 
+that have certain resources(such as customers, or email templates). REST APIs are widely used in web services and 
 provide user authentication and error indication.
 
 ## HTTP
@@ -57,17 +56,17 @@ an example:
     }
 ]
 ```
-Here we have retrieved an email template using the GET request. We can see this template has the value *"Template ID"* corresponding to the *"id"* 
+This is a response from using the GET request to get email templates. We can see this template has the value *"Template ID"* corresponding to the *"id"* 
 key and the value *"Template Name"* corresponding to the *"name"* key. When interacting with the API, you will send and receive JSON formatted data.
 
 ## Authentication
 HTTP authentication is done by providing a username and password when making an HTTP request. Authentication with our API can be 
-made by providing your API key as your username and an empty password. Your API key can be found by going into your dashboard and 
+done with only your API key as your username. Your API key can be found by going into your dashboard and 
 clicking on the **API Settings** menu tab. You can try a basic authentication command with
 
 `curl -u <your_API_key>: https://api.sendwithus.com/api/v1`
 
-Here we are using the cURL command with the option *-u* to supply a username to the base API url https://api.sendwithus.com/api/v1.
+Here we are using the cURL command with the option *-u* to supply a username to the base API URL at https://api.sendwithus.com/api/v1.
 
 ## Error Handling
 HTTP provide status codes in response headers when requests are made. To include the HTTP header in the response,
@@ -89,7 +88,7 @@ We can try an authentication request using an invalid API key, which results in 
 `
 
 # Sending your first email
-Let's go through what we know to send your first test email!
+Let's go through what we know to send your first email!
 
 We will send an email using a purchase confirmation template. Sending an email will require using the 
 POST request method to create a new email. We will send the request to
