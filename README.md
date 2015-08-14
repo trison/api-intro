@@ -24,7 +24,13 @@ that have certain resources(such as customers, or email templates). REST APIs ar
 provide user authentication and error indication.
 
 ## HTTP
-Sendwithus uses the HTTP request methods PUT, POST, GET and DELETE in its API. 
+Sendwithus uses the HTTP request methods PUT, POST, GET and DELETE in its API. When you make a request to send or retrieve data with cURL, 
+you need the -X option. So your typical cURL command will be: 
+
+`curl -X <request> -u <your API key>: https://api.sendwithus.com/api/v1`
+
+
+Below are the requests you can use with Sendwithus:
 
 * **PUT**: Update your data *eg. change a user's name*
 * **POST**: Create new data *eg.  add a new user*
@@ -55,8 +61,8 @@ their corresponding keys. Let's look at an example:
     }
 ]
 ```
-This is a response from using the GET request to get email templates. We can see this template has the value *"Template ID"* corresponding to the *"id"* 
-key, and the value *"Template Name"* corresponding to the *"name"* key. When interacting with the API, you will send and receive JSON formatted data.
+This is a response from using the GET request to get email templates. We can see this template has the *"Template ID"* value corresponding to the *"id"* 
+key, and the *"Template Name"* value corresponding to the *"name"* key. When interacting with the API, you will send and receive JSON formatted data.
 
 
 ## Authentication
@@ -111,3 +117,10 @@ curl -X POST \
 ```
 
 Here we are using the cURL *-X POST* command to send a POST request, authenticating using *-u* with your API key, using *-d* to send the email data in JSON format, which all goes to the */send* URL.
+
+# Now you're on your way to [getting started](https://www.sendwithus.com/docs) with Sendwithus!
+
+### Additional Resources
+
+* [Sendwithus API Docs](https://www.sendwithus.com/docs/api)
+* [Gitbhub](https://github.com/sendwithus)
