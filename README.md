@@ -11,12 +11,12 @@ and sending your first email.
 
 We will use the 'cURL' command line tool for our examples, but we also provide API Clients for:
 
-* Python
-* Ruby
-* Ruby On Rails
-* Node.js
-* PHP
-* Java
+* [Python](https://github.com/sendwithus/sendwithus_python)
+* [Ruby](https://github.com/sendwithus/sendwithus_ruby)
+* [Ruby On Rails](https://github.com/sendwithus/sendwithus_ruby_action_mailer)
+* [Node.js](https://github.com/sendwithus/sendwithus_nodejs)
+* [PHP](https://github.com/sendwithus/sendwithus_php)
+* [Java](https://github.com/sendwithus/sendwithus_java)
 
 # REST API
 The sendwithus API is based on the REST architectural style. This means information is transferred through HTTP requests to URLs
@@ -31,12 +31,11 @@ Sendwithus uses the HTTP request methods PUT, POST, GET and DELETE in its API.
 * **GET**: Retrieve your data *eg.  get a list of your email templates*
 * **DELETE**: Delete data *eg. remove a user*
 
-## JSON
-- Mention sendwithus uses JSON as opposed to other technologies
 
-Sendwithus uses JSON, which is a data format that holds objects with key-value pairs. This means that
-data is stored as blocks that have a set of values that can be accessed through their corresponding keys. Let's look at
-an example:
+## JSON
+Sendwithus uses JSON for its data storage instead of a Relational Database Management System such as SQL. JSON is a data format that 
+holds objects with key-value pairs. This means that data is stored as blocks that have a set of values that can be accessed through 
+their corresponding keys. Let's look at an example:
 ```
 [
     {
@@ -57,7 +56,8 @@ an example:
 ]
 ```
 This is a response from using the GET request to get email templates. We can see this template has the value *"Template ID"* corresponding to the *"id"* 
-key and the value *"Template Name"* corresponding to the *"name"* key. When interacting with the API, you will send and receive JSON formatted data.
+key, and the value *"Template Name"* corresponding to the *"name"* key. When interacting with the API, you will send and receive JSON formatted data.
+
 
 ## Authentication
 HTTP authentication is done by providing a username and password when making an HTTP request. Authentication with our API can be 
@@ -68,11 +68,12 @@ clicking on the **API Settings** menu tab. You can try a basic authentication co
 
 Here we are using the cURL command with the option *-u* to supply a username to the base API URL at https://api.sendwithus.com/api/v1.
 
-## Error Handling
-HTTP provide status codes in response headers when requests are made. To include the HTTP header in the response,
-enter the cURL option `-i` in your request command. The header will include status codes:
 
-* 2xx - Success!
+## Error Handling
+HTTP provides status codes in response headers when requests are made. To include the HTTP header in responses,
+enter the cURL option `-i` in your request command. The header will have status codes:
+
+* 2xx - Your request was successful. Yay!
 * 4xx - There was an error on the client side
 * 5xx - There was an error on the server side
 
@@ -82,7 +83,7 @@ list of 4xx errors at https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4x
 A server side error can result from an unrecognizable request, server downtime, or more. A full list of 5xx errors can be found
 at https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error
 
-We can try an authentication request using an invalid API key, which results in a 403 Forbidden error:
+We can try an authentication request using an invalid API key, live_1234, which results in a 403 Forbidden error:
 
 `curl -i -u live_1234: https://api.sendwithus.com/api/v1
 `
@@ -109,4 +110,4 @@ curl -X POST \
     		https://api.sendwithus.com/api/v1/send
 ```
 
-Here we are using the cURL command to send a POST request, authenticating with your API key, sending the email data, which goes to the *send* URL.
+Here we are using the cURL *-X POST* command to send a POST request, authenticating using *-u* with your API key, using *-d* to send the email data in JSON format, which all goes to the */send* URL.
