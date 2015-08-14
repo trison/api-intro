@@ -18,10 +18,11 @@ We will use the 'cURL' command line tool for our examples, but we also provide A
 * [PHP](https://github.com/sendwithus/sendwithus_php)
 * [Java](https://github.com/sendwithus/sendwithus_java)
 
+
 # REST API
 The sendwithus API is based on the REST architectural style. This means information is transferred through HTTP requests to URLs
 that have certain resources(such as customers, or email templates). REST APIs are widely used in web services and 
-provide user authentication and error indication.
+provide user authentication and error indication. With cURL, we can use HTTP to transfer data with our REST API!
 
 ## HTTP
 Sendwithus uses the HTTP request methods PUT, POST, GET and DELETE in its API. When you make a request to send or retrieve data with cURL, 
@@ -41,7 +42,7 @@ Below are the requests you can use with Sendwithus:
 ## JSON
 Sendwithus uses JSON for its data storage instead of a Relational Database Management System such as SQL. JSON is a data format that 
 holds objects with key-value pairs. This means that data is stored as blocks that have a set of values that can be accessed through 
-their corresponding keys. Let's look at an example:
+their corresponding keys. JSON allows us to work with data that's very human readable. Let's look at an example:
 ```
 [
     {
@@ -72,7 +73,7 @@ clicking on the **API Settings** menu tab. You can try a basic authentication co
 
 `curl -u <your_API_key>: https://api.sendwithus.com/api/v1`
 
-Here we are using the cURL command with the option *-u* to supply a username to the base API URL at https://api.sendwithus.com/api/v1.
+Here we are using the cURL command with the option `-u` to supply a username to the base API URL at https://api.sendwithus.com/api/v1.
 
 
 ## Error Handling
@@ -86,19 +87,32 @@ enter the cURL option `-i` in your request command. The header will have status 
 A client side error can be made from a mistyped request, an unauthorized request, an unavailable resource or more. See a full
 list of 4xx errors at https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error
 
-A server side error can result from an unrecognizable request, server downtime, or more. A full list of 5xx errors can be found
+A server side error can result from an unrecognizable request, server downtime, or more. See a full list of 5xx errors 
 at https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error
 
 We can try an authentication request using an invalid API key, live_1234, which results in a 403 Forbidden error:
 
-`curl -i -u live_1234: https://api.sendwithus.com/api/v1
-`
+`curl -i -u live_1234: https://api.sendwithus.com/api/v1`
+
+We can see the error message in the first line of our response:
+
+```
+HTTP/1.1 403 FORBIDDEN
+Connection: keep-alive
+Server: Apache
+Date: Fri, 14 Aug 2015 18:40:49 GMT
+Transfer-Encoding: chunked
+Vary: Cookie
+Content-Type: text/html; charset=utf-8
+Via: 1.1 vegur
+```
 
 # Sending your first email
 Let's go through what we know to send your first email!
 
 We will send an email using a purchase confirmation template. Sending an email will require using the 
-POST request method to create a new email. We will send the request to
+POST request method to create a new email. The data we will send includes a template ID, and a recipient 
+address. We will send the request to
 
 `https://api.sendwithus.com/api/v1/send`
 
@@ -116,11 +130,7 @@ curl -X POST \
     		https://api.sendwithus.com/api/v1/send
 ```
 
-Here we are using the cURL *-X POST* command to send a POST request, authenticating using *-u* with your API key, using *-d* to send the email data in JSON format, which all goes to the */send* URL.
+Here we are using the cURL `-X POST` command to send a POST request, authenticating using `-u` and your API key, using `-d` to send the email data in JSON format, which all goes to the */send* URL. Simple! To see a full list of requests you can make, visit our [API Docs.](https://www.sendwithus.com/docs/api)
 
 # Now you're on your way to [getting started](https://www.sendwithus.com/docs) with Sendwithus!
 
-### Additional Resources
-
-* [Sendwithus API Docs](https://www.sendwithus.com/docs/api)
-* [Gitbhub](https://github.com/sendwithus)
